@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
   
   :root {
     --primary-color: teal; 
+    --secondary-color: lightseagreen;
     --primary-contrast-color: white;
   }
   `;

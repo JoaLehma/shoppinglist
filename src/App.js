@@ -5,8 +5,12 @@ import StyledButton from "./components/StyledButton";
 import StyledButtonsContainer from "./components/StyledButtonsContainer";
 import StyledForm from "./components/StyledForm";
 import StyledContainer from "./components/StyledContainer";
+import Fetch from "./components/Fetch";
+import StyledTitle from "./components/StyledTitle";
+import { nanoid } from "nanoid";
 
 function App() {
+  const [inputValue, setInputValue] = useState();
   const [items, setItems] = useState([
     {
       _id: "c2hvcHBpbmcuaXRlbTox",
@@ -68,12 +72,14 @@ function App() {
     <>
       <GlobalStyle />
       <StyledContainer>
-        <h1>Shopping List</h1>
+        <StyledTitle>
+          <h1>Shopping List</h1>
+        </StyledTitle>
         <StyledButtonsContainer>
           {items.map((item) => {
             return (
               <StyledButton
-                key={items._id}
+                key={item._id}
                 type="button"
                 onClick={() => {
                   setItems(
@@ -83,14 +89,28 @@ function App() {
                   );
                 }}
               >
-                {item.name.de}{" "}
+                {item.name.de}
               </StyledButton>
             );
           })}
         </StyledButtonsContainer>
-        <StyledForm>
-          <input type="search" placeholder="search..."></input>
+        <StyledForm
+          onSubmit={(event) => {
+            event.preventDefault();
+            setItems([...items, { name: { de: inputValue }, _id: nanoid() }]);
+          }}
+        >
+          <input
+            type="search"
+            placeholder="search..."
+            required
+            value={inputValue}
+            onChange={(event) => {
+              setInputValue(event.target.value);
+            }}
+          ></input>
         </StyledForm>
+        <Fetch />
       </StyledContainer>
     </>
   );

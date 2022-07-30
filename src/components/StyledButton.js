@@ -6,7 +6,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   border: 1px solid black;
   color: var(--primary-contrast-color);
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   border-radius: 10px;
 `;
 
